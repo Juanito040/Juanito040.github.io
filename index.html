@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitacion ITBOY</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Estilos organizados por sección -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/revelacion.css" />
+    <link rel="stylesheet" href="css/portada.css" />
+    <link rel="stylesheet" href="css/nombre.css" />
+    <link rel="stylesheet" href="css/invitacion.css" />
+    <link rel="stylesheet" href="css/ticket.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <!-- AUDIO DE FONDO -->
+    <audio id="musicaFondo" loop>
+      <source src="assets/songs/musica.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Control de Música Flotante -->
+    <div class="music-control" id="musicControl">
+      <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
+        <i id="musicIcon" class="fa-solid fa-volume-xmark"></i>
+      </button>
+      <div class="volume-control hidden" id="volumeControl">
+        <input
+          type="range"
+          id="volumeSlider"
+          min="0"
+          max="100"
+          value="30"
+          class="volume-slider"
+          oninput="cambiarVolumen(this.value)"
+        />
+      </div>
+    </div>
+
+    <!-- Footer Global con imágenes -->
+    <footer class="global-footer">
+     
+    </footer>
+
+    <!-- PANTALLA 1: REVELACIÓN DEL LOGO (PRIMERA PANTALLA) -->
+    <section id="pantalla-revelacion">
+      <div class="logo-revelacion">
+        <img src="assets/img/1.png" alt="Logo ITBOY" />
+      </div>
+    </section>
+
+    <!-- PANTALLA 2: PORTADA CON CARRO -->
+    <section id="portada" class="hidden">
+      <div class="portada-content">
+        <div class="portada-numeros">
+          <img src="assets/img/Titulo.png" alt="Desde 1975" class="titulo-imagen" />
+        </div>
+        <div class="portada-imagen-principal"></div>
+        <button class="btn-explorar" onclick="irAPantallaNombre()">
+          Explorar
+        </button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 2: CAJA DE NOMBRE -->
+    <section id="pantalla-nombre" class="hidden">
+      <div class="caja-nombre">
+        <h2>Bienvenido</h2>
+        <p>Por favor, ingresa tu nombre para continuar</p>
+        <input
+          type="text"
+          id="inputNombre"
+          class="input-nombre"
+          placeholder="Tu nombre completo"
+          onkeypress="handleEnter(event)"
+        />
+        <button class="btn-ver-invitacion" onclick="mostrarInvitacion()">
+          Ver Invitación
+        </button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 3: INVITACIÓN PERSONALIZADA -->
+    <section id="invitacion" class="hidden">
+      <div class="invitacion-contenido">
+        <div class="invitacion-header">
+          <span class="header-line"></span>
+          <span class="header-text">INVITACIÓN EXCLUSIVA</span>
+          <span class="header-line"></span>
+        </div>
+        <h1>
+          Hola,
+          <span class="nombre-usuario" id="nombrePersonalizado">Invitado</span>
+        </h1>
+        <div class="mensaje">
+          Estás cordialmente invitado a nuestro evento empresarial exclusivo.
+          Será un honor contar con tu presencia en esta importante celebración.
+        </div>
+        <div class="detalles">
+          <p><strong><i class="fa-regular fa-calendar"></i> Fecha:</strong> Jueves 11 de Diciembre, 2025.</p>
+          <p><strong><i class="fa-regular fa-clock"></i> Hora:</strong> 6:00 PM.</p>
+          <p><strong><i class="fa-solid fa-location-dot"></i> Lugar:</strong> Villa Campestre Andalucia.</p>
+          <div class="dress-code">
+            <p><strong><i class="fa-solid fa-shirt"></i> Código de vestimenta:</strong></p>
+            <p class="dress-code-item">
+              <span class="dress-label"></i> Ellas:</span> Vestido largo.
+            </p>
+            <p class="dress-code-item">
+              <span class="dress-label"></i> Ellos:</span> Traje de corbata.
+            </p>
+          </div>
+        </div>
+        <button class="btn-confirmar" onclick="confirmarAsistencia()">
+          Confirmar Asistencia
+        </button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 4: TICKET Y CONTACTO -->
+    <section id="ticket" class="hidden">
+      <!-- Información de contacto y ubicación -->
+      <div class="ticket-info-contact">
+        <h3 class="contact-title">Información del Evento</h3>
+
+        <div class="contact-cards">
+          <!-- Card de ubicación -->
+          <div class="contact-card location-card">
+            <div class="card-icon">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <h4>Ubicación</h4>
+            <p>Villa Campestre Andalucia</p>
+            <a href="https://maps.google.com/?q=Villa+Campestre+Andalucia" target="_blank" class="btn-card">
+              <i class="fa-solid fa-map-marked-alt"></i> Ver en Google Maps
+            </a>
+          </div>
+
+         
+
+          <!-- Card de WhatsApp -->
+          <div class="contact-card whatsapp-card">
+            <div class="card-icon">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <h4>Confirma por WhatsApp</h4>
+            <p>Contactanos al 323 231 45 67</p>
+            <a href="https://wa.me/573232314567?text=Hola,%20confirmo%20mi%20asistencia%20al%20evento%20del%2011%20de%20diciembre" target="_blank" class="btn-card btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Enviar WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+  
+      <!-- Footer con imágenes decorativas -->
+      <div class="ticket-footer">
+        <img src="assets/img/3.png" alt="Footer decorativo" class="ticket-footer-imagen" />
+        <img src="assets/img/6.png" alt="Footer decorativo" class="ticket-footer-imagen" />
+      </div>
+      
+    </section>
+
+    <script>
+      let nombreUsuario = "";
+
+      /**
+       * Auto-iniciar pantalla de revelación al cargar
+       */
+      function iniciarRevelacion() {
+        const pantallaRevelacion = document.getElementById(
+          "pantalla-revelacion"
+        );
+        const logoRevelacion =
+          pantallaRevelacion.querySelector(".logo-revelacion");
+
+        // Mostrar pantalla de revelación
+        pantallaRevelacion.style.opacity = "1";
+
+        // Animar logo después de un breve delay
+        setTimeout(() => {
+          logoRevelacion.classList.add("show");
+        }, 300);
+
+        // Después de 3 segundos, ir a portada
+        setTimeout(() => {
+          irAPortada();
+        }, 3500);
+      }
+
+      /**
+       * Transición de Revelación a Portada
+       */
+      function irAPortada() {
+        const pantallaRevelacion = document.getElementById(
+          "pantalla-revelacion"
+        );
+        const portada = document.getElementById("portada");
+
+        // Animación de salida de revelación
+        pantallaRevelacion.classList.add("fade-out-zoom");
+
+        setTimeout(() => {
+          pantallaRevelacion.classList.add("hidden");
+          portada.classList.remove("hidden");
+          portada.style.opacity = "1";
+        }, 800);
+      }
+
+      /**
+       * Transición de Portada a Pantalla de Nombre
+       */
+      function irAPantallaNombre() {
+        const portada = document.getElementById("portada");
+        const pantallaNombre = document.getElementById("pantalla-nombre");
+        const cajaNombre = pantallaNombre.querySelector(".caja-nombre");
+
+        // Animación de salida de portada
+        portada.style.transition = "opacity 0.6s ease-out";
+        portada.style.opacity = "0";
+
+        setTimeout(() => {
+          portada.classList.add("hidden");
+          pantallaNombre.classList.remove("hidden");
+          pantallaNombre.style.opacity = "1";
+
+          setTimeout(() => {
+            cajaNombre.classList.add("show");
+          }, 100);
+
+          document.getElementById("inputNombre").focus();
+        }, 600);
+      }
+
+      /**
+       * Manejo de tecla Enter en el input
+       */
+      function handleEnter(event) {
+        if (event.key === "Enter") {
+          mostrarInvitacion();
+        }
+      }
+
+      /**
+       * Transición de Pantalla de Nombre a Invitación
+       */
+      function mostrarInvitacion() {
+        const input = document.getElementById("inputNombre");
+        nombreUsuario = input.value.trim();
+
+        if (nombreUsuario === "") {
+          input.style.borderColor = "#ef4444";
+          input.placeholder = "Por favor ingresa tu nombre";
+          input.classList.add("shake");
+          setTimeout(() => {
+            input.classList.remove("shake");
+            input.style.borderColor = "rgba(34, 197, 94, 0.3)";
+          }, 500);
+          return;
+        }
+
+        const pantallaNombre = document.getElementById("pantalla-nombre");
+        const invitacion = document.getElementById("invitacion");
+        const invitacionContenido = invitacion.querySelector(
+          ".invitacion-contenido"
+        );
+
+        pantallaNombre.style.transition =
+          "opacity 0.6s ease-out, transform 0.6s ease-out";
+        pantallaNombre.style.opacity = "0";
+        pantallaNombre.style.transform = "scale(0.9)";
+
+        setTimeout(() => {
+          pantallaNombre.classList.add("hidden");
+          invitacion.classList.remove("hidden");
+          invitacion.style.opacity = "1";
+
+          document.getElementById("nombrePersonalizado").textContent =
+            nombreUsuario;
+
+          setTimeout(() => {
+            invitacionContenido.classList.add("show");
+          }, 100);
+        }, 600);
+      }
+
+      /**
+       * Función de confirmación de asistencia
+       */
+      function confirmarAsistencia() {
+        const invitacion = document.getElementById("invitacion");
+        const ticketSection = document.getElementById("ticket");
+        const ticketContenedor =
+          ticketSection.querySelector(".ticket-contenedor");
+
+        const btn = event.target;
+        btn.textContent = "✓ CONFIRMADO";
+        btn.style.background =
+          "linear-gradient(135deg, #10b981 0%, #059669 100%)";
+        btn.style.cursor = "default";
+        btn.disabled = true;
+
+        setTimeout(() => {
+          invitacion.style.transition = "opacity 0.6s ease-out";
+          invitacion.style.opacity = "0";
+
+          setTimeout(() => {
+            invitacion.classList.add("hidden");
+            ticketSection.classList.remove("hidden");
+            ticketSection.style.opacity = "1";
+
+            setTimeout(() => {
+              ticketContenedor.classList.add("show");
+            }, 100);
+          }, 600);
+        }, 1000);
+      }
+
+      /**
+       * Función para imprimir el ticket
+       */
+      function imprimirTicket() {
+        window.print();
+      }
+
+      /**
+       * Función para descargar el ticket como imagen
+       */
+      function descargarTicket() {
+        alert(
+          'Para descargar el ticket:\n\n1. Haz clic en "Imprimir Ticket"\n2. Selecciona "Guardar como PDF" o "Microsoft Print to PDF"\n3. Guarda el archivo en tu computadora'
+        );
+      }
+
+      /**
+       * CONTROL DE MÚSICA DE FONDO
+       */
+      const musica = document.getElementById("musicaFondo");
+      const musicToggle = document.getElementById("musicToggle");
+      const musicIcon = document.getElementById("musicIcon");
+      const volumeControl = document.getElementById("volumeControl");
+      let musicaReproduciendo = false;
+
+      musica.volume = 0.3;
+
+      function toggleMusic() {
+        if (musicaReproduciendo) {
+          musica.pause();
+          musicIcon.className = "fa-solid fa-volume-xmark";
+          musicToggle.classList.remove("playing");
+          volumeControl.classList.add("hidden");
+        } else {
+          musica.play().catch((error) => {
+            console.log("Error al reproducir música:", error);
+            alert("Por favor, haz clic de nuevo para activar la música");
+          });
+          musicIcon.className = "fa-solid fa-volume-high";
+          musicToggle.classList.add("playing");
+          volumeControl.classList.remove("hidden");
+        }
+        musicaReproduciendo = !musicaReproduciendo;
+      }
+
+      function cambiarVolumen(valor) {
+        musica.volume = valor / 100;
+
+        if (valor == 0) {
+          musicIcon.className = "fa-solid fa-volume-xmark";
+        } else if (valor < 50) {
+          musicIcon.className = "fa-solid fa-volume-low";
+        } else {
+          musicIcon.className = "fa-solid fa-volume-high";
+        }
+      }
+
+      document.addEventListener(
+        "click",
+        function iniciarMusicaAuto() {
+          if (!musicaReproduciendo) {
+            musica
+              .play()
+              .then(() => {
+                musicaReproduciendo = true;
+                musicIcon.className = "fa-solid fa-volume-high";
+                musicToggle.classList.add("playing");
+                document.removeEventListener("click", iniciarMusicaAuto);
+              })
+              .catch(() => {});
+          }
+        },
+        { once: true }
+      );
+
+      // Auto-iniciar la revelación cuando la página cargue
+      window.addEventListener("load", () => {
+        iniciarRevelacion();
+      });
+    </script>
+  </body>
+</html>

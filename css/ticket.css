@@ -1,0 +1,502 @@
+/* ============================================
+   PANTALLA DE TICKET
+   ============================================ */
+#ticket {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(
+    135deg,
+    #202020 0%,
+    #1f3d1f 50%,
+    #3a5a3a 100%
+  );
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 10;
+}
+
+.ticket-contenedor {
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.ticket-contenedor.show {
+  animation: zoomInFade 0.8s ease-out forwards;
+}
+
+.ticket-card {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+  animation: ticketFloat 4s ease-in-out infinite;
+}
+
+/* Animación sutil de flotación del ticket */
+@keyframes ticketFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+.ticket-imagen {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ticket-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.ticket-nombre {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #22c55e;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(34, 197, 94, 0.5);
+  letter-spacing: 3px;
+}
+
+.ticket-acciones {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.ticket-footer {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 2px solid rgba(34, 197, 94, 0.2);
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2.5s forwards;
+  width: 100%;
+  clear: both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.ticket-footer-imagen {
+  max-width: 200px;
+  height: auto;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.ticket-footer-imagen:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.btn-imprimir,
+.btn-descargar {
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-imprimir i,
+.btn-descargar i {
+  margin-right: 8px;
+}
+
+.btn-imprimir {
+  color: #000000;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+}
+
+.btn-imprimir:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.6);
+}
+
+.btn-descargar {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1a3a1a 0%, #0a1f0a 100%);
+  border: 2px solid #22c55e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-descargar:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #000000;
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.6);
+}
+
+/* ============================================
+   INFORMACIÓN DE CONTACTO
+   ============================================ */
+.ticket-info-contact {
+  margin-top: 40px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.5s forwards;
+  width: 100%;
+  clear: both;
+}
+
+.contact-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #22c55e;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(34, 197, 94, 0.2);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Animaciones escalonadas para cada card */
+.location-card {
+  animation: slideUpCard 0.8s ease-out 1.8s forwards;
+}
+
+.phone-card {
+  animation: slideUpCard 0.8s ease-out 2s forwards;
+}
+
+.whatsapp-card {
+  animation: slideUpCard 0.8s ease-out 2.2s forwards;
+}
+
+@keyframes slideUpCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(34, 197, 94, 0.6);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.card-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(22, 163, 74, 0.2) 100%);
+  border-radius: 50%;
+  font-size: 2rem;
+  color: #22c55e;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
+  box-shadow: 0 5px 20px rgba(34, 197, 94, 0.4);
+}
+
+.contact-card h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.contact-card p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+}
+
+.phone-number {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #22c55e;
+  letter-spacing: 1px;
+}
+
+.btn-card {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #000000;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
+}
+
+.btn-card i {
+  margin-right: 8px;
+}
+
+.btn-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.5);
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  animation: pulseWhatsApp 2s ease-in-out infinite;
+}
+
+.btn-whatsapp:hover {
+  animation: none;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
+@keyframes pulseWhatsApp {
+  0%, 100% {
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+  }
+  50% {
+    box-shadow: 0 5px 25px rgba(37, 211, 102, 0.6);
+  }
+}
+
+/* Estilos para impresión */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #ticket,
+  #ticket * {
+    visibility: visible;
+  }
+
+  #ticket {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ticket-contenedor {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ticket-acciones,
+  .ticket-footer,
+  .ticket-info-contact,
+  .global-footer,
+  .music-control {
+    display: none !important;
+  }
+
+  .ticket-card {
+    max-width: 100%;
+    box-shadow: none;
+    page-break-inside: avoid;
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVO - TICKET
+   ============================================ */
+@media (max-width: 768px) {
+  .ticket-nombre {
+    font-size: 1.8rem;
+  }
+
+  .btn-imprimir,
+  .btn-descargar {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+
+  .ticket-footer {
+    margin-top: 40px;
+    padding-top: 25px;
+    gap: 20px;
+  }
+
+  .ticket-footer-imagen {
+    max-width: 180px;
+  }
+
+  /* Contacto responsive */
+  .contact-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-cards {
+    gap: 20px;
+  }
+
+  .contact-card {
+    padding: 25px 15px;
+  }
+
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.7rem;
+  }
+
+  .contact-card h4 {
+    font-size: 1.2rem;
+  }
+
+  .btn-card {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ticket-card {
+    max-width: 100%;
+    margin: 0 auto 25px;
+  }
+
+  .ticket-nombre {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  .ticket-acciones {
+    gap: 15px;
+  }
+
+  .btn-imprimir,
+  .btn-descargar {
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+  }
+
+  .ticket-footer {
+    margin-top: 35px;
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .ticket-footer-imagen {
+    max-width: 150px;
+  }
+
+  /* Contacto responsive móvil */
+  .contact-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .contact-card {
+    padding: 20px 15px;
+  }
+
+  .card-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 1.5rem;
+  }
+
+  .contact-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .contact-card p {
+    font-size: 0.9rem;
+  }
+
+  .phone-number {
+    font-size: 1.1rem;
+  }
+
+  .btn-card {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .ticket-footer {
+    margin-top: 30px;
+    gap: 10px;
+  }
+
+  .ticket-footer-imagen {
+    max-width: 130px;
+  }
+
+  /* Contacto responsive móvil pequeño */
+  .contact-title {
+    font-size: 1.2rem;
+  }
+
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+}

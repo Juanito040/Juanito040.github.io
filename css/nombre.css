@@ -1,0 +1,187 @@
+/* ============================================
+   PANTALLA DE NOMBRE
+   ============================================ */
+#pantalla-nombre {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(
+    135deg,
+    #202020 0%,
+    #1f3d1f 50%,
+    #3a5a3a 100%
+  );
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 10;
+}
+
+#pantalla-nombre::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      circle at 30% 30%,
+      rgba(34, 197, 94, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(22, 163, 74, 0.06) 0%,
+      transparent 50%
+    );
+  animation: rotateBackground 15s linear infinite;
+}
+
+@keyframes rotateBackground {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.caja-nombre {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 35px;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.caja-nombre.show {
+  animation: zoomInFade 0.8s ease-out forwards;
+}
+
+.caja-nombre h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.caja-nombre p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  margin-bottom: 25px;
+  font-weight: 300;
+}
+
+.input-nombre {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border: 2px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input-nombre:focus {
+  border-color: #22c55e;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+.input-nombre::placeholder {
+  color: #94a3b8;
+}
+
+.btn-ver-invitacion {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #000000;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+}
+
+.btn-ver-invitacion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.6);
+}
+
+.btn-ver-invitacion:active {
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   RESPONSIVO - NOMBRE
+   ============================================ */
+@media (max-width: 768px) {
+  .caja-nombre {
+    padding: 35px 28px;
+    max-width: 420px;
+  }
+
+  .caja-nombre h2 {
+    font-size: 1.8rem;
+  }
+
+  .caja-nombre p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .caja-nombre {
+    padding: 30px 25px;
+  }
+
+  .caja-nombre h2 {
+    font-size: 1.6rem;
+  }
+
+  .caja-nombre p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .input-nombre {
+    padding: 12px 18px;
+    font-size: 0.95rem;
+  }
+
+  .btn-ver-invitacion {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .caja-nombre {
+    padding: 25px 20px;
+  }
+
+  .caja-nombre h2 {
+    font-size: 1.4rem;
+  }
+}
